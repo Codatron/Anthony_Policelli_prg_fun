@@ -3,39 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Assignment4InputMovement : ProcessingLite.GP21
-
 {
     Vector2 posP1;
     Vector2 posP2;
-    float diameter = 1.0f;
-
     Vector2 velocityP1;
     Vector2 velocityP2;
     Vector2 acceleration;
     Vector2 deceleration;
     Vector2 gravity;
-    
+    float diameter = 1.0f;
     float speed = 5.0f;
     float maxSpeed = 0.05f;
-
+    float gravityForce = -0.025f;
     bool isGravityOn = false;
-    float gravityForce = 10f;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        // Start position player 1
         posP1 = new Vector2((Width / 2) - 2, (Height / 2));
-
-        // Start position player 2
         posP2 = new Vector2((Width / 2) + 2, (Height / 2));
     }
 
     // Update is called once per frame
     void Update()
     {
-
         Background(50);
 
         // Player 1 
@@ -49,30 +40,32 @@ public class Assignment4InputMovement : ProcessingLite.GP21
         StrokeWeight(0.25f);
         Circle(posP2.x, posP2.y, diameter);
 
-        gravity = new Vector2(0f, gravityForce);
         
         if (Input.GetKeyDown(KeyCode.G))
         {
-            // This acts as a toggle
-            isGravityOn = !isGravityOn;
+            isGravityOn = true;
         }
 
         if (isGravityOn)
         {
+            gravity = new Vector2(0f, gravityForce);
+            posP2 += velocityP2;
+            velocityP2 += gravity * Time.deltaTime;
+
             if (posP2.y < 0)
             {
-                velocityP2.y += 1;
+                velocityP2.y *= -1 * 0.825f;
+                velocityP2.x *= 0.925f;
             }
 
-            posP2.y -= gravity.y * Time.deltaTime;
+            ScreenWrap();
         }
         else
         {
-            isGravityOn = isGravityOn;
             ScreenWrap();
+            player2Movement();
         }
 
-        player2Movement();
     }
 
     private void player1Movement()
@@ -111,11 +104,27 @@ public class Assignment4InputMovement : ProcessingLite.GP21
     {
         // Player 1
         posP1.x = (posP1.x + Width) % Width;
-        posP1.y = (posP1.y + Height) % Height;
+
+        if (posP1.y < 0)
+        {
+            posP1.y = 0;
+        }
+        if (posP1.y > Height)
+        {
+            posP1.y = Height;
+        }
 
         // Player 2
         posP2.x = (posP2.x + Width) % Width;
-        posP2.y = (posP2.y + Height) % Height;
+        
+        if (posP2.y < 0)
+        {
+            posP2.y = 0;
+        }
+        if (posP2.y > Height)
+        {
+            posP2.y = Height;
+        }
     }
 }
 
