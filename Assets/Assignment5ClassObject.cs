@@ -8,20 +8,26 @@ public class Assignment5ClassObject : ProcessingLite.GP21
     BallAssignment5 tony;
     BallAssignment5[] tonyBalls;
     public int numberOfBalls = 10;
+    public int currentNumberOfBalls = 5;
     public bool isHit;
     public bool isGameOver = false;
     public float time;
     public float newTime;   // Add in a score tracker in Update isHit
     public float oldTime;
 
-    // Start is called before the first frame update
     void Start()
     {
+
         Initialize();
         time = 0;
+        InvokeRepeating(nameof(SpawnBalls), 3, 3);
     }
 
-    // Update is called once per frame
+    void SpawnBalls()
+    {
+        currentNumberOfBalls++;
+    }
+
     void Update()
     {
         time += Time.deltaTime;
@@ -45,7 +51,7 @@ public class Assignment5ClassObject : ProcessingLite.GP21
         brenda.Boundary();
         brenda.Draw();
 
-        for (int i = 0; i < tonyBalls.Length; i++)
+        for (int i = 0; i < currentNumberOfBalls; i++) 
         {
             tonyBalls[i].Movement();
             tonyBalls[i].Boundary();
