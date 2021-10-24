@@ -21,8 +21,9 @@ public class Assignment2 : ProcessingLite.GP21
 
         //Parabola();
         //HorizontalLines();
-        HorizontalLinesMovementT2B();
+        //HorizontalLinesMovementT2B();
         //HorizontalLinesMovementB2T();
+        //VerticalLineMovementL2R();
         //VerticalLineMovementR2L();
     }
 
@@ -143,6 +144,8 @@ public class Assignment2 : ProcessingLite.GP21
         }
     }
 
+    // Functions below were previous code to test stuff out.
+    // DO NOT USE
     private void Unused()
     {
         for (int i = 0; i < Height; i++)

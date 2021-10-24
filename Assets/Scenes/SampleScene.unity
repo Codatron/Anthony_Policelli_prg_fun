@@ -243,7 +243,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c3b8b689fcca6740b1d36c5a3ff8ab0, type: 3}
   m_Name: 
@@ -267,12 +267,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9ad6840e881bce4facd04c3f0151890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfBalls: 10
+  currentNumberOfBalls: 5
   isHit: 0
   isGameOver: 0
   time: 0
